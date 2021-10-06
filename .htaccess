@@ -1,0 +1,16 @@
+RewriteEngine On
+<IfModule mod_rewrite.c>
+Options +FollowSymLinks
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php?req=$1 [L,QSA]
+RewriteRule ^$ index.php?req=$1 [L,QSA]
+</IfModule>
+<Files .*>
+Order allow,deny
+Deny from all
+</Files>
+<FilesMatch ".(?i:doc|docx|xls|xlsx|ppt|pptx|odf|pdf|rtf|txt|ics)$">
+ForceType application/octet-stream
+Header set Content-Disposition attachment
+</FilesMatch>
