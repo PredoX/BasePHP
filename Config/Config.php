@@ -1,13 +1,19 @@
 <?php
 require_once './vendor/autoload.php';
 
+// carga de valiables de ambiente 
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createImmutable('./');
 $dotenv->load();
-
+define('host', $_ENV['host_db']);
+define('baseDatos', $_ENV['name_db']);
+define('usuario', $_ENV['user_db']);
+define('password', $_ENV['pass_db']);
+define('zonaHoraria', $_ENV['zonaHoraria']);
+define('ubicacion', $_ENV['ubicacion']);
+define('Sistema', $_ENV['sistema']);
 ini_set('default_charset', 'UTF-8');
-date_default_timezone_set('America/Santiago');
 
-# Generar conexion principal
-$_SESSION['conexion'] = new PDO('mysql:host=' . $_ENV['host_db'] . ';dbname=' . $_ENV['name_db'] . ';charset=utf8;', $_ENV['user_db'], $_ENV['pass_db'], array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+
+date_default_timezone_set(zonaHoraria);

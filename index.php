@@ -4,8 +4,7 @@ use Controllers\ErrorController;
 
 try {
  require_once('Config/Config.php');
- $ubicacion = isset($_ENV['ubicacion']) ? $_ENV['ubicacion'] : $_SERVER['REQUEST_URI'];
- $ruta = substr($_SERVER['REQUEST_URI'], strpos($_SERVER['REQUEST_URI'], $ubicacion) + strlen($ubicacion));
+ $ruta = substr($_SERVER['REQUEST_URI'], strpos($_SERVER['REQUEST_URI'], ubicacion) + strlen(ubicacion));
  $ruta = explode(' ', trim(str_replace('/', ' ', $ruta)));
  if (!isset($ruta[0])) throw new Error("Controllador no encontrado", 4);
  $controller = 'Controllers\\' . $ruta[0] . 'Controller';
